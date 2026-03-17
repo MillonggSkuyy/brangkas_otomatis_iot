@@ -1,42 +1,48 @@
 # Brankas Otomatis Berbasis IoT (brankas_otomatis_iot)
 
-Proyek ini adalah sistem keamanan brankas pintar berbasis Internet of Things (IoT). Sistem ini mengintegrasikan perangkat keras (Arduino & ESP32) dengan antarmuka web untuk monitoring secara real-time.
+Sistem keamanan brankas pintar berbasis Internet of Things (IoT) yang mengintegrasikan kontrol perangkat keras dengan notifikasi real-time via Telegram dan monitoring berbasis web.
 
 ## 📂 Struktur Folder
 
-- **WebMonitoringBrankas**: Berisi file source code untuk dashboard pemantauan berbasis web (PHP/HTML/JS).
-- **arduino_sidang1**: Kode program untuk mikrokontroler Arduino (biasanya menangani sensor dan aktuator fisik).
-- **esp32_sidang1**: Kode program untuk ESP32 (menangani konektivitas Wi-Fi, pengiriman data ke cloud/web, atau modul kamera).
+- **WebMonitoringBrankas**: Source code dashboard pemantauan (PHP/MySQL).
+- **arduino_sidang1**: Kode program mikrokontroler untuk kontrol sensor/aktuator fisik.
+- **esp32_sidang1**: Kode program ESP32 untuk konektivitas Wi-Fi dan komunikasi Bot Telegram.
 
 ## 🚀 Fitur Utama
 
-* **Keamanan Ganda**: Menggunakan kombinasi perangkat keras untuk akses fisik.
-* **Monitoring Real-time**: Pantau status brankas (terkunci/terbuka) melalui website.
-* **Notifikasi IoT**: Integrasi sistem untuk memberikan peringatan jarak jauh.
-* **Log Akses**: Mencatat riwayat penggunaan brankas.
+* **Keamanan Ganda**: Kontrol akses fisik yang terintegrasi.
+* **Monitoring Web**: Pantau status brankas secara real-time dari browser.
+* **Notifikasi Bot Telegram**: Sistem akan mengirimkan pesan instan ke perangkat pengguna jika:
+    * Brankas berhasil dibuka/dikunci.
+    * Terdeteksi percobaan akses ilegal atau paksa.
+* **Log Sistem**: Riwayat aktivitas tercatat secara otomatis di database.
 
 ## 🛠️ Komponen yang Digunakan
 
-* **Hardware**:
-    * Arduino Uno/Mega
-    * ESP32 (Konektivitas Wi-Fi)
-    * Solenoid Door Lock
-    * Sensor (Keypad / Fingerprint / RFID / Magnetic Switch)
-* **Software**:
-    * Arduino IDE
-    * Web Server (XAMPP/Hosting)
-    * Database (MySQL)
+* **Hardware**: Arduino (Uno/Mega), ESP32 (Wi-Fi & Telegram Module), Solenoid Door Lock, Sensor Keypad/RFID.
+* **Software**: Arduino IDE, Web Server (XAMPP/Hosting), MySQL Database.
+* **Platform**: Telegram Bot API.
 
-## 🔧 Cara Instalasi
+## 🔧 Konfigurasi Bot Telegram
 
-1.  **Hardware**: Hubungkan komponen sesuai dengan pin yang didefinisikan di folder `arduino_sidang1` dan `esp32_sidang1`.
-2.  **Web**:
-    * Upload isi folder `WebMonitoringBrankas` ke server lokal atau hosting.
-    * Konfigurasi database pada file koneksi di dalam folder tersebut.
+Untuk mengaktifkan fitur notifikasi, pastikan kamu telah mengatur hal berikut di dalam kode `esp32_sidang1`:
+
+1.  Dapatkan **Bot Token** dari [@BotFather](https://t.me/botfather).
+2.  Dapatkan **Chat ID** akun Telegram kamu (bisa melalui @IDBot).
+3.  Masukkan Token dan Chat ID tersebut ke dalam variabel yang tersedia di file `.ino`:
+    ```cpp
+    #define BOTtoken "XXXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    #define CHAT_ID "XXXXXXXXX"
+    ```
+
+## 💻 Cara Instalasi
+
+1.  **Hardware**: Rakit komponen sesuai skema yang ditentukan di folder kode.
+2.  **Database**: Import file SQL ke phpMyAdmin dan sesuaikan konfigurasi di `WebMonitoringBrankas`.
 3.  **Firmware**:
-    * Buka file `.ino` di folder Arduino dan ESP32 menggunakan Arduino IDE.
-    * Sesuaikan konfigurasi Wi-Fi (SSID & Password) pada kode ESP32.
-    * Upload kode ke masing-masing perangkat.
+    * Buka file di folder `arduino_sidang1` dan `esp32_sidang1` via Arduino IDE.
+    * Masukkan **SSID** dan **Password** Wi-Fi pada kode ESP32.
+    * Upload kode ke masing-masing mikrokontroler.
 
 ## 👤 Author
 - **Widya Apriliani Ridwan**
