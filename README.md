@@ -39,7 +39,8 @@ Proyek ini adalah sistem keamanan brankas pintar berbasis Internet of Things (Io
     * Upload kode ke masing-masing perangkat.
 
 ## 👤 Author
-- **MillonggSkuyy**
+- **Widya Apriliani Ridwan**
+- **Kamil Mahsyar Akbar**
 
 ---
 *Proyek ini dikembangkan untuk keperluan Tugas Akhir / Sidang.*
